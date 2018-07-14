@@ -9,7 +9,7 @@ void main() {
   const String username = 'testUserName';
   const String password = 'testPassword';
   const String fileName = 'test_credentials.json';
-  const String jsonString = '{"apiKey":"$apiKey","username":"$username","password":"$password"}';
+  const String jsonString = '{"api_key":"$apiKey","username":"$username","password":"$password"}';
 
   test('tests the default constructor', () {
     Credentials credentials = Credentials(

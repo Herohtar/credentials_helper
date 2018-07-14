@@ -8,6 +8,7 @@ part 'credentials.g.dart';
 /// Holds various types of credentials
 @JsonSerializable(includeIfNull: false)
 class Credentials extends Object with _$CredentialsSerializerMixin {
+  @JsonKey(name: 'api_key')
   final String apiKey;
 
   final String username;
@@ -15,16 +16,11 @@ class Credentials extends Object with _$CredentialsSerializerMixin {
   final String password;
 
   /// Constructs a new [Credentials] object.
-  Credentials(
-    {
-      this.apiKey,
-      this.username,
-      this.password
-    }
-  );
+  Credentials({this.apiKey, this.username, this.password});
 
   /// Constructs a new [Credentials] object from a JSON map
-  factory Credentials.fromJson(Map<String, dynamic> json) => _$CredentialsFromJson(json);
+  factory Credentials.fromJson(Map<String, dynamic> json) =>
+      _$CredentialsFromJson(json);
 
   /// Constructs a new [Credentials] object from a JSON file
   factory Credentials.fromFile(String fileName) {

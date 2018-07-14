@@ -8,7 +8,7 @@ part of 'credentials.dart';
 
 Credentials _$CredentialsFromJson(Map<String, dynamic> json) {
   return new Credentials(
-      apiKey: json['apiKey'] as String,
+      apiKey: json['api_key'] as String,
       username: json['username'] as String,
       password: json['password'] as String);
 }
@@ -26,7 +26,7 @@ abstract class _$CredentialsSerializerMixin {
       }
     }
 
-    writeNotNull('apiKey', apiKey);
+    writeNotNull('api_key', apiKey);
     writeNotNull('username', username);
     writeNotNull('password', password);
     return val;
