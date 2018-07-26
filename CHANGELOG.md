@@ -1,3 +1,7 @@
+## v1.0.3 - 2018-07-26
+
+* Updated to support Dart 2
+
 ## v1.0.2 - 2018-07-25
 
 * Updated to use `json_serializable` v1.0.0

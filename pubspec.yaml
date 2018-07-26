@@ -1,6 +1,6 @@
 name: credentials_helper
 description: Provides a helper class to simplify loading credentials from JSON
-version: 1.0.2
+version: 1.0.3
 author: "Herohtar <belac1186@gmail.com>"
 homepage: https://github.com/herohtar/credentials_helper
 
@@ -13,4 +13,4 @@ dev_dependencies:
   json_serializable: ^1.0.0
 
 environment:
-  sdk: ">=2.0.0-dev.58.0 <2.0.0"
+  sdk: ">=2.0.0-dev.58.0 <3.0.0"
