@@ -13,22 +13,17 @@ Credentials _$CredentialsFromJson(Map<String, dynamic> json) {
       password: json['password'] as String);
 }
 
-abstract class _$CredentialsSerializerMixin {
-  String get apiKey;
-  String get username;
-  String get password;
-  Map<String, dynamic> toJson() {
-    var val = <String, dynamic>{};
+Map<String, dynamic> _$CredentialsToJson(Credentials instance) {
+  var val = <String, dynamic>{};
 
-    void writeNotNull(String key, dynamic value) {
-      if (value != null) {
-        val[key] = value;
-      }
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
     }
-
-    writeNotNull('api_key', apiKey);
-    writeNotNull('username', username);
-    writeNotNull('password', password);
-    return val;
   }
+
+  writeNotNull('api_key', instance.apiKey);
+  writeNotNull('username', instance.username);
+  writeNotNull('password', instance.password);
+  return val;
 }

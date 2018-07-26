@@ -1,3 +1,7 @@
+## v1.0.2 - 2018-07-25
+
+* Updated to use `json_serializable` v1.0.0
+
 ## v1.0.1 - 2018-07-14
 
 * Changed Credentials class serializer to use "api_key" as the key name even though the property name is "apiKey"
