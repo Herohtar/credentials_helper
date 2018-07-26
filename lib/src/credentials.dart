@@ -1,33 +1,46 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:json_annotation/json_annotation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+import 'package:built_value/standard_json_plugin.dart';
 
 part 'credentials.g.dart';
 
 /// Holds various types of credentials
-@JsonSerializable(includeIfNull: false)
-class Credentials {
-  @JsonKey(name: 'api_key')
-  final String apiKey;
+abstract class Credentials implements Built<Credentials, CredentialsBuilder> {
+  @nullable
+  @BuiltValueField(wireName: 'api_key')
+  String get apiKey;
 
-  final String username;
+  @nullable
+  String get username;
 
-  final String password;
+  @nullable
+  String get password;
+
+  Credentials._();
 
   /// Constructs a new [Credentials] object.
-  Credentials({this.apiKey, this.username, this.password});
+  factory Credentials({String apiKey, String username, String password}) = _$Credentials._;
+
+  static Serializer<Credentials> get serializer => _$credentialsSerializer;
+  static Serializers _serializers =
+    (new Serializers().toBuilder()..add(serializer)..addPlugin(new StandardJsonPlugin())).build();
 
   /// Constructs a new [Credentials] object from a JSON map
-  factory Credentials.fromJson(Map<String, dynamic> json) =>
-      _$CredentialsFromJson(json);
-
-  /// Returns this object as a JSON map
-  Map<String, dynamic> toJson() => _$CredentialsToJson(this);
+  factory Credentials.fromJson(Map<String, dynamic> json) {
+    return _serializers.deserializeWith(serializer, json);
+  }
 
   /// Constructs a new [Credentials] object from a JSON file
   factory Credentials.fromFile(String fileName) {
     return Credentials.fromJson(json.decode(File(fileName).readAsStringSync()));
+  }
+
+  /// Returns a JSON map of the [Credentials]
+  Map<String, dynamic> toJson() {
+    return _serializers.serializeWith(serializer, this);
   }
 
   /// Writes the current [Credentials] to a JSON file

@@ -45,9 +45,7 @@ void main() {
     expect(File(fileName).readAsStringSync(), jsonString);
 
     Credentials newCredentials = Credentials.fromFile(fileName);
-    expect(newCredentials.apiKey, originalCredentials.apiKey);
-    expect(newCredentials.username, originalCredentials.username);
-    expect(newCredentials.password, originalCredentials.password);
+    expect(newCredentials, originalCredentials);
 
     File(fileName).deleteSync();
   });
