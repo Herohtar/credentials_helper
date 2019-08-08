@@ -6,14 +6,6 @@ part of 'credentials.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line
-// ignore_for_file: annotate_overrides
-// ignore_for_file: avoid_annotating_with_dynamic
-// ignore_for_file: avoid_returning_this
-// ignore_for_file: omit_local_variable_types
-// ignore_for_file: prefer_expression_function_bodies
-// ignore_for_file: sort_constructors_first
-
 Serializer<Credentials> _$credentialsSerializer = new _$CredentialsSerializer();
 
 class _$CredentialsSerializer implements StructuredSerializer<Credentials> {
@@ -23,7 +15,7 @@ class _$CredentialsSerializer implements StructuredSerializer<Credentials> {
   final String wireName = 'Credentials';
 
   @override
-  Iterable serialize(Serializers serializers, Credentials object,
+  Iterable<Object> serialize(Serializers serializers, Credentials object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
     if (object.apiKey != null) {
@@ -44,12 +36,11 @@ class _$CredentialsSerializer implements StructuredSerializer<Credentials> {
         ..add(serializers.serialize(object.password,
             specifiedType: const FullType(String)));
     }
-
     return result;
   }
 
   @override
-  Credentials deserialize(Serializers serializers, Iterable serialized,
+  Credentials deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new CredentialsBuilder();
 
@@ -86,23 +77,23 @@ class _$Credentials extends Credentials {
   @override
   final String password;
 
-  factory _$Credentials([void updates(CredentialsBuilder b)]) =>
+  factory _$Credentials([void Function(CredentialsBuilder) updates]) =>
       (new CredentialsBuilder()..update(updates)).build();
 
   _$Credentials._({this.apiKey, this.username, this.password}) : super._();
 
   @override
-  Credentials rebuild(void updates(CredentialsBuilder b)) =>
+  Credentials rebuild(void Function(CredentialsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   CredentialsBuilder toBuilder() => new CredentialsBuilder()..replace(this);
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    if (other is! Credentials) return false;
-    return apiKey == other.apiKey &&
+    return other is Credentials &&
+        apiKey == other.apiKey &&
         username == other.username &&
         password == other.password;
   }
@@ -152,12 +143,14 @@ class CredentialsBuilder implements Builder<Credentials, CredentialsBuilder> {
 
   @override
   void replace(Credentials other) {
-    if (other == null) throw new ArgumentError.notNull('other');
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
     _$v = other as _$Credentials;
   }
 
   @override
-  void update(void updates(CredentialsBuilder b)) {
+  void update(void Function(CredentialsBuilder) updates) {
     if (updates != null) updates(this);
   }
 
@@ -170,3 +163,5 @@ class CredentialsBuilder implements Builder<Credentials, CredentialsBuilder> {
     return _$result;
   }
 }
+
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
