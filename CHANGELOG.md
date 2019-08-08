@@ -1,3 +1,7 @@
+## v1.0.4 - 2019-08-07
+
+* Updated packages
+
 ## v1.0.3 - 2018-07-26
 
 * Updated to support Dart 2
