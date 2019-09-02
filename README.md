@@ -1,4 +1,4 @@
-# credentials_helper
+# credentials_helper [![Actions Status](https://github.com/Herohtar/credentials_helper/workflows/Dart%20CI/badge.svg)](https://github.com/Herohtar/credentials_helper/actions)
 
 The idea behind this package is to provide a simple way to use various credentials in a project (particularly during development/testing) that is less prone to result in a private API key or the like being commited or published along with your code.
 
